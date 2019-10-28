@@ -1,5 +1,9 @@
 package be.cuvelier;
 
-public class Tournoi {
+import java.util.ListIterator;
+
+public class Tournoi  {
+	
+	private ListIterator <Ordonnancement> iter ;
 
 }

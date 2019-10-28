@@ -7,6 +7,8 @@ public class Equipe {
 	
 	public Equipe(int nb) 
 	{
+		nb_joueur=nb;
+		
 		if(nb<= 2) {
 		eq = new Joueur[nb];
 		}else {
