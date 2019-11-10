@@ -12,5 +12,9 @@ public class Joueur extends Personne {
 		classement =c;
 		
 	}
+	
+	public char GetSexe() {
+		return sexe;
+	}
 
 }
