@@ -15,5 +15,9 @@ public class Equipe {
 			System.out.print("Impossible de créer de plus grande equipe");
 		}
 	}
+	
+	public int GetnbJoueur() {
+		return nb_joueur;
+	}
 
 }

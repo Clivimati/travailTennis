@@ -9,6 +9,8 @@ public class Court {
 	private String typeSurface;
 	private Date dispo;
 	
-	
+	public Date GetD() {
+		return dispo;
+	}
 
 }
