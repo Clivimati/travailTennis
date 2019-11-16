@@ -27,13 +27,13 @@ public class JoueurDao extends DAO<Joueur> {
 	}
 	
 	public Joueur find(int id){
-		Joueur j = new Joueur();
+		Joueur j = new Joueur(id, null, 0, null, null);
 		try{
 			ResultSet result = this.connect.createStatement(
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 	ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Joueur WHERE N°  = " + id);
 			if(result.first())
-				j = new Joueur();
+				j = new Joueur(id,result.getString("sexe"),result.getInt("classement"),result.getString("nom"),result.getString("prenom"));
 		}
 		catch(SQLException e){
 			e.printStackTrace();

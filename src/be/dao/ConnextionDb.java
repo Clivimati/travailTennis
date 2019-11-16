@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import com.sun.jdi.connect.spi.Connection;
 
 public class ConnextionDb {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		try
 		{
 			//Vérifie si le driver pour la connexion à une base de données Access est présent
@@ -80,6 +81,7 @@ public class ConnextionDb {
 			}
 		}
 	}
+}
 
 
 

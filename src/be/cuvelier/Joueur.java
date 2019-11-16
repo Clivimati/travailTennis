@@ -2,23 +2,20 @@ package be.cuvelier;
 
 public class Joueur extends Personne {
 	
-	private char sexe;
+	private int pti;
+	private String sexe;
 	private int classement;
-	
-	public Joueur(char s, int c, String n , String p) 
+	public Joueur(int pt,String s, int c, String n , String p) 
 	{
 		super(n,p);
+		pti= pt;
 		sexe=s;
 		classement =c;
 		
 	}
 	
-	public Joueur(String n , String p) {
-		super(n,p);
-		// TODO Auto-generated constructor stub
-	}
 
-	public char GetSexe() {
+	public String GetSexe() {
 		return sexe;
 	}
 	
