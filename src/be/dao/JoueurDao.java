@@ -2,6 +2,7 @@ package be.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.sun.jdi.connect.spi.Connection;
 
@@ -30,9 +31,9 @@ public class JoueurDao extends DAO<Joueur> {
 		try{
 			ResultSet result = this.connect.createStatement(
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
-	ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Eleve WHERE elv_id = " + id);
+	ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Joueur WHERE N°  = " + id);
 			if(result.first())
-				j = new Joueur(0, id, result.getString("elv_nom"), result.getString("elv_prenom"));
+				j = new Joueur();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -41,11 +42,11 @@ public class JoueurDao extends DAO<Joueur> {
 	}
 
 	
-	public Joueur findAll() {
-		// TODO Auto-generated method stub
+	public List<Joueur> findAll() {
+		
 		return null;
 	}
 }
 
 
-}
+

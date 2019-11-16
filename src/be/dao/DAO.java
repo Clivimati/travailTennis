@@ -1,6 +1,10 @@
 package be.dao;
 
+import java.util.List;
+
 import com.sun.jdi.connect.spi.Connection;
+
+import be.cuvelier.Joueur;
 
 public abstract class DAO <T> {
 protected Connection connect = null;
@@ -17,7 +21,7 @@ protected Connection connect = null;
 	
 	public abstract T find(int id);
 	
-	public abstract T findAll();
+	public abstract List<Joueur> findAll();
 }
 
 

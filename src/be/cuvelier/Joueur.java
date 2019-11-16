@@ -13,6 +13,11 @@ public class Joueur extends Personne {
 		
 	}
 	
+	public Joueur(String n , String p) {
+		super(n,p);
+		// TODO Auto-generated constructor stub
+	}
+
 	public char GetSexe() {
 		return sexe;
 	}

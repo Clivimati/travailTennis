@@ -10,20 +10,20 @@ import javax.swing.JOptionPane;
 import com.sun.jdi.connect.spi.Connection;
 
 public class ConnextionDb {
-	try
-	{
-		//Vérifie si le driver pour la connexion à une base de données Access est présent
-		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-	}
-	catch(ClassNotFoundException ex){
-		JOptionPane.showMessageDialog(null,"Classe de driver introuvable " + ex.getMessage());
-		System.exit(0);
-	}
+		try
+		{
+			//Vérifie si le driver pour la connexion à une base de données Access est présent
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		}
+		catch(ClassNotFoundException ex){
+			JOptionPane.showMessageDialog(null,"Classe de driver introuvable " + ex.getMessage());
+			System.exit(0);
+		}
 	
 	//Permet de préparer la connexion avec la base de données
-	Connection connec = null;
+	java.sql.Connection connec = null;
 	//Permet de préparer la requête
-	Statement stmt = null;
+	java.sql.Statement stmt = null;
 	//Permet de récupérer le resultat
 	ResultSet res = null;
 	
@@ -32,7 +32,7 @@ public class ConnextionDb {
 		//Associe la connexion de la base de données
 		//La classe DriverManager va permettre de se connecter à une source de données
 		//La méthode getConnection permet de définir la base de données que l'on va utiliser
-		connec = DriverManager.getConnection("jdbc:ucanaccess://./carsDB.accdb");
+		connec = DriverManager.getConnection("jdbc:ucanaccess://./player.accdb");
 		
 		//On écrit la requête à éxécuter
 		String requete = "SELECT marque,modele FROM Voiture";
@@ -60,25 +60,27 @@ public class ConnextionDb {
 	}
 	
 	finally{
-		
-		try{
-			if(res != null){
-				//Libère l'objet resultat si celui-ci est null
-				res.close();
+				
+				try{
+					if(res != null){
+						//Libère l'objet resultat si celui-ci est null
+						res.close();
+					}
+					if(stmt != null){
+						//Libère l'objet requête si celui-ci est null
+						stmt.close();
+					}
+					if(connec != null){
+						//Libère l'object connexion si celui-ci est null
+						connec.close();
+					}
+				}
+			catch(SQLException ex){
+				ex.printStackTrace();
 			}
-			if(stmt != null){
-				//Libère l'objet requête si celui-ci est null
-				stmt.close();
-			}
-			if(connec != null){
-				//Libère l'object connexion si celui-ci est null
-				connec.close();
-			}
-		}
-		catch(SQLException ex){
-			ex.printStackTrace();
 		}
 	}
 
-}
-}
+
+
+
