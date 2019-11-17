@@ -14,7 +14,6 @@ public class Joueur extends Personne {
 		
 	}
 	
-
 	public String GetSexe() {
 		return sexe;
 	}

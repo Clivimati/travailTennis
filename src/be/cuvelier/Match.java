@@ -1,8 +1,11 @@
 package be.cuvelier;
 
 import java.util.Date;
+import java.util.Random;
 
 public class Match {
+	
+	
 	
 	private int durer;
 	private int tour;
@@ -24,5 +27,11 @@ public class Match {
 	public Date GetDateM() {
 		return date;
 	}
-
+	
+	public void VerifierScore(Equipe[] team) 
+	{
+		int set = 1;
+		Random r = new Random();
+		r.nextInt(7 - 4);	
+	}
 }

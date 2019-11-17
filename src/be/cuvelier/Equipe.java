@@ -19,5 +19,14 @@ public class Equipe {
 	public int GetnbJoueur() {
 		return nb_joueur;
 	}
+	
+	public Joueur [] FontionIntergerDE1() {
+		 
+		
+		
+		return eq;
+			
+	}
+	
 
 }
