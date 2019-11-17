@@ -21,7 +21,7 @@ protected Connection connect = null;
 	
 	public abstract T find(int id);
 	
-	public abstract List<Joueur> findAll();
+	public abstract List<Object> findAll();
 }
 
 
