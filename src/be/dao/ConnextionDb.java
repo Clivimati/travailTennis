@@ -1,13 +1,13 @@
 package be.dao;
 
-import java.beans.Statement;
+import java.sql.Statement;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import com.sun.jdi.connect.spi.Connection;
+import java.sql.Connection;
 
 public class ConnextionDb {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
@@ -22,9 +22,9 @@ public class ConnextionDb {
 		}
 	
 	//Permet de préparer la connexion avec la base de données
-	java.sql.Connection connec = null;
+	Connection connect = null;
 	//Permet de préparer la requête
-	java.sql.Statement stmt = null;
+	Statement stmt = null;
 	//Permet de récupérer le resultat
 	ResultSet res = null;
 	
@@ -33,12 +33,12 @@ public class ConnextionDb {
 		//Associe la connexion de la base de données
 		//La classe DriverManager va permettre de se connecter à une source de données
 		//La méthode getConnection permet de définir la base de données que l'on va utiliser
-		connec = DriverManager.getConnection("jdbc:ucanaccess://./player.accdb");
+		connect = DriverManager.getConnection("jdbc:ucanaccess://./player.accdb");
 		
 		//On écrit la requête à éxécuter
 		String requete = "SELECT marque,modele FROM Voiture";
 		//On crée la requête qui va être envoyé à la base de données
-		stmt = connec.createStatement();
+		stmt = connect.createStatement();
 		//On éxecute la requête et le resultat est stocké dans un objet de type ResultSet
 		res = stmt.executeQuery(requete);
 		
@@ -71,9 +71,9 @@ public class ConnextionDb {
 						//Libère l'objet requête si celui-ci est null
 						stmt.close();
 					}
-					if(connec != null){
+					if(connect != null){
 						//Libère l'object connexion si celui-ci est null
-						connec.close();
+						connect.close();
 					}
 				}
 			catch(SQLException ex){

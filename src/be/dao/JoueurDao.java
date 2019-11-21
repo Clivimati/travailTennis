@@ -1,12 +1,12 @@
 package be.dao;
 
 import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.jdi.connect.spi.Connection;
-
+import java.sql.Connection;
 import be.cuvelier.Joueur;
 
 public class JoueurDao extends DAO<Joueur> {
@@ -28,13 +28,13 @@ public class JoueurDao extends DAO<Joueur> {
 	}
 	
 	public Joueur find(int id){
-		Joueur j = new Joueur(id, null, 0, null, null);
+		Joueur j = new Joueur();
 		try{
 			ResultSet result = this.connect.createStatement(
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
-	ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Joueur WHERE N°  = " + id);
+	ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Joueur WHERE id_j  = " + id);
 			if(result.first())
-				j = new Joueur(id,result.getString("sexe"),result.getInt("classement"),result.getString("nom"),result.getString("prenom"));
+				j = new Joueur(id,result.getString("sexe"),result.getInt("classement"),result.getString("nom_j"),result.getString("prenom_j"));
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -51,7 +51,7 @@ public class JoueurDao extends DAO<Joueur> {
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 	ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Joueur");
 			if(result.first())
-				j = new ArrayList<Joueur>(result.getInt("N°"));
+				j = new ArrayList<Joueur>(result.getInt("nom_j"));
 		}
 		catch(SQLException e){
 			e.printStackTrace();

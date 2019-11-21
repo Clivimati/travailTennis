@@ -1,14 +1,18 @@
 package be.cuvelier;
 
-public class Joueur extends Personne {
+import java.io.Serializable;
+
+public class Joueur extends Personne implements Serializable {
+	private static final long serialVersionUID=1;
 	
-	private int pti;
 	private String sexe;
 	private int classement;
-	public Joueur(int pt,String s, int c, String n , String p) 
+	
+	public Joueur() {}
+	
+	public Joueur(int i,String s, int c, String n , String p) 
 	{
-		super(n,p);
-		pti= pt;
+		super(i,n,p);
 		sexe=s;
 		classement =c;
 		

@@ -7,10 +7,12 @@ public class Arbitre extends Personne {
 	
 	private List<Date> disponibilite;
 	
-	public Arbitre(Date dispo, String n, String p) {
-		super(n,p);
+	public Arbitre(int i,Date dispo, String n, String p) {
+		super(i,n,p);
 		disponibilite= (List<Date>) dispo;
 	}
+	
+	public Arbitre() {}
 	
 	public List<Date> GetDisponibiliter() {
 		return disponibilite;

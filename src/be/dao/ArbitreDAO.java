@@ -5,11 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.jdi.connect.spi.Connection;
-
+import java.sql.Connection;
 import be.cuvelier.Arbitre;
-
-
 
 public class ArbitreDAO extends DAO<Arbitre> {
 	
@@ -30,11 +27,11 @@ public class ArbitreDAO extends DAO<Arbitre> {
 	}
 	
 	public Arbitre find(int id){
-		Arbitre j = new Arbitre(null, null, null);
+		Arbitre j = new Arbitre();
 		try{
 			ResultSet result = this.connect.createStatement(
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
-	ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Arbitre WHERE N°  = " + id);
+	ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Arbitre WHERE id_a  = " + id);
 			if(result.first())
 				j = new Arbitre();
 		}
@@ -45,8 +42,19 @@ public class ArbitreDAO extends DAO<Arbitre> {
 	}
 
 	
-	public List<Joueur> findAll() {
-		return null;
+	public List<Arbitre> findAll() {
+		List<Arbitre> j = new ArrayList<Arbitre>();
+		try {
+			ResultSet result = this.connect.createStatement(
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+	ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Arbitre");
+			if(result.first())
+				j = new ArrayList<Arbitre>(result.getInt("nom_a"));
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}	
+		return j;
 	
 	}
 
