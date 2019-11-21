@@ -1,12 +1,47 @@
 package be.cuvelier;
 
-import java.util.Iterator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ordonnancement {
 
-	private Iterator<Match> match ;
+	private List<Match> match ;
 	private String type;
 	private int nrbSetGagant;
+	
+	public Ordonnancement(int set) {
+		type = "S";
+		String ok;
+		if(set == 3) {
+			ok=type+"F";
+			match = new ArrayList<Match>();
+		}if(set == 5) {
+			ok=type+"M";
+			match = new ArrayList<Match>();
+		}
+		
+	}
+	
+	public Ordonnancement (String t) {
+		type = "D";
+		nrbSetGagant = 3;
+		String ok;
+		if( t == "F") {
+			
+			ok=type + t;
+			match = new ArrayList<Match>();
+		}else if(t=="M") {
+			ok=type + t;
+			match = new ArrayList<Match>();
+		}else if(t=="Mi") {
+			ok=type + t;
+			match = new ArrayList<Match>();
+			}else {
+				System.out.print("Impossible de cree votre tableau");
+			}
+		
+	}
 	
 	public String GetType(){  
 		return type; 
@@ -16,8 +51,13 @@ public class Ordonnancement {
 		return nrbSetGagant;
 	}
 	
-	public Iterator<Match> GetMatch(){
+	public List<Match> GetMatch(){
 		return match;
+	}
+	
+	public void AjouterMatch(Match jeu) {
+		match.add(jeu);
+		
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.Random;
 public class Match {
 	
 	Equipe [] team ;
+	Ordonnancement ord;
 	private int durer;
 	private int tour= 0;
 	private Date date;
@@ -69,5 +70,20 @@ public class Match {
 		tour ++;
 		return tour;
 		
+	}
+	
+	public void OrganiserMatch(Equipe e1, Equipe e2, Court t, Arbitre r) {
+		
+		if(ord.GetType()=="SM") {
+			Match n1= new Match (e1,e2,t,r);
+		}else if (ord.GetType()=="SF") {
+			Match n1= new Match (e1,e2,t,r);
+		}else if (ord.GetType()=="DF") {
+			Match n1= new Match (e1,e2,t,r);
+		}else if (ord.GetType()=="DM") {
+			Match n1= new Match (e1,e2,t,r);
+		}else if (ord.GetType()=="DMi") {
+			
+		}
 	}
 }
