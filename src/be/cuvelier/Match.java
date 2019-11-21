@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Match {
 	
-	private Ordonnancement ord;
+	Equipe [] team ;
 	private int durer;
 	private int tour= 0;
 	private Date date;
@@ -14,8 +14,9 @@ public class Match {
 	public Match() {}
 	
 	@SuppressWarnings("deprecation")
-	public Match(Equipe[]  t ) {
-		ord.GetType();
+	public Match(Equipe e1, Equipe e2, Court t, Arbitre r) {
+		Supperviser();
+		jouerMatch(e1,e2);
 		int temps = new Random().nextInt((3 - 1) + 1) + 1;
 		durer = temps;
 		int month  = new Random().nextInt((7 - 5) + 1) + 5;
@@ -40,9 +41,19 @@ public class Match {
 		return date;
 	}
 	
-	public Equipe[] JouerMatch(Equipe e1 , Equipe e2) {
+	public Arbitre Supperviser() {
 		
-		Equipe [] team = new Equipe [2];
+		Arbitre a = new Arbitre();
+		if(a.GetDisponibiliter()!= date) {
+			return null;
+		}
+		
+		return a;
+	}
+	
+	public Equipe[] jouerMatch(Equipe e1 , Equipe e2) {
+		
+		team = new Equipe [2];
 		team[1]= e1;
 		team[2]=e2;
 		return team;	
@@ -50,7 +61,13 @@ public class Match {
 	
 	public void VerifierScore(Equipe[] team) 
 	{
-		int set = 1;
+		int set = 1;	
+		
+	}
+	
+	public int SwitchTour(Equipe win) {
+		tour ++;
+		return tour;
 		
 	}
 }
