@@ -16,9 +16,11 @@ public class Ordonnancement {
 		if(set == 3) {
 			ok=type+"F";
 			match = new ArrayList<Match>();
+			return;
 		}if(set == 5) {
 			ok=type+"M";
 			match = new ArrayList<Match>();
+			return;
 		}
 		
 	}
@@ -31,12 +33,15 @@ public class Ordonnancement {
 			
 			ok=type + t;
 			match = new ArrayList<Match>();
+			return;
 		}else if(t=="M") {
 			ok=type + t;
 			match = new ArrayList<Match>();
+			return;
 		}else if(t=="Mi") {
 			ok=type + t;
 			match = new ArrayList<Match>();
+			return;
 			}else {
 				System.out.print("Impossible de cree votre tableau");
 			}

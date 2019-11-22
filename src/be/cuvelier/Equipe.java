@@ -12,6 +12,7 @@ public class Equipe {
 	private boolean nb_joueur;
 	//private Catalogue cat = Catalogue.getInstance();
 	private static DAO<Joueur> jdao = new JoueurDao(null);
+	private int victoire =0;
 	
 	public Equipe() {}
 	
@@ -37,6 +38,9 @@ public class Equipe {
 		return nb_joueur;
 	}
 	
+	public int getVictoire() {
+		return victoire;
+	}
 	
 	
 	public Equipe FontionIntergerDE1() {
