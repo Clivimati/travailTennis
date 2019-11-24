@@ -116,7 +116,7 @@ public class Tournoi  {
 	
 	public  List<Match> tourSuivant(List<Equipe> eqliste){
 		List<Match> mliste = new ArrayList<Match>();
-		int taille = eqliste.size()/2;
+		int taille = (eqliste.size()/2)-1;
 		for(int i = 0 ; i <= taille ; i++ ) {
 			Equipe e1 = eqliste.stream().findFirst().get();
 			eqliste.remove(e1);
@@ -126,6 +126,15 @@ public class Tournoi  {
 			mliste.add(new Match(e1,e2,this.nbrSetGagnant));
 		}
 		return mliste;
+	}
+	
+	public boolean matchAJouer() {
+		Ordonnancement ord = tourEnCours();
+		return (ord.getMatches().size() > 1);
+	}
+
+	private Ordonnancement tourEnCours() {
+		return listeOrdonnancement.get(listeOrdonnancement.size() - 1);
 	}
 
 
