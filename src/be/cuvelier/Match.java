@@ -60,19 +60,36 @@ public class Match {
 	public void JouerMatch(int NbrSetMax) {
 		score.put(this.equipeTab[0].hashCode(), 0);
 		score.put(this.equipeTab[1].hashCode(), 0);
-		boolean hasWinner = false;
-		while (hasWinner == false) {
-			int winner = (int) (Math.random() * ( 1 - 0 ));
-			score.put(this.equipeTab[winner].hashCode(), score.get(this.equipeTab[winner]) + 1);
-			hasWinner = VerifierResultat(NbrSetMax);
-		}
-	};
-	
-	public boolean VerifierResultat(int nbrSetMax) {
-		return false;
+		
 	}
 	
 	
+	private int jouerJeu() {
+		
+		int rand= new Random().nextInt((1-0)+1)+0;
+		return rand;
+	}
+	
+	private boolean verifierScore(int[] scoreSet) {
+		int score1 = scoreSet[0];
+		int score2 = scoreSet[1];
+		int scoreDiff = Math.abs(score1 - score2);
+		
+		if (this.scores.size() == (this.nbrSetMax - 1)) {
+			if ((score1 == 6) || (score2 == 6)){
+				return false;
+			}
+		}
+		else {
+			if ((score1 > 5 || score2 > 5) && scoreDiff >= 2) {
+				return false;
+			}
+			if ((score1 == 7) || (score2 == 7)){
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	    
 	  public boolean tieBreak() {
