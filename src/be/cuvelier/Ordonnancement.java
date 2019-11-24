@@ -84,34 +84,26 @@ public class Ordonnancement {
 				this.matches.add(new Match(e1,e2));
 			}
 			else if(this.type == Ordonnancement.DOUBLE_FEMME){
-				Joueur j1 = listeJoueur.stream().filter( j -> j.getSex() == Joueur.FEMME).findAny().get();
-				listeJoueur.remove(j1);
-				Joueur j2 = listeJoueur.stream().filter( j -> j.getSex() == Joueur.FEMME).findAny().get();
-				listeJoueur.remove(j2);
-				Joueur j3 = listeJoueur.stream().filter( j -> j.getSex() == Joueur.FEMME).findAny().get();
-				listeJoueur.remove(j3);
-				Joueur j4 = listeJoueur.stream().filter( j -> j.getSex() == Joueur.FEMME).findAny().get();
-				listeJoueur.remove(j4);
-				
-				Equipe e1 = new Equipe(j1,j2);
-				Equipe e2 = new Equipe(j3,j4);
-				
-				this.matches.add(new Match(e1,e2));
+				Equipe[] eTab = new Equipe[2];
+				for (int k = 0 ; k < 2 ; k++) {
+					Joueur j1 = listeJoueur.stream().filter( j -> j.getSex() == Joueur.FEMME).findAny().get();
+					listeJoueur.remove(j1);
+					Joueur j2 = listeJoueur.stream().filter( j -> j.getSex() == Joueur.FEMME).findAny().get();
+					listeJoueur.remove(j2);
+					eTab[k] = new Equipe(j1,j2);
+				}
+				this.matches.add(new Match(eTab[0],eTab[1]));
 			}
 			else if(this.type == Ordonnancement.MIXTE){
-				Joueur j1 = listeJoueur.stream().findAny().get();
-				listeJoueur.remove(j1);
-				Joueur j2 = listeJoueur.stream().findAny().get();
-				listeJoueur.remove(j2);
-				Joueur j3 = listeJoueur.stream().findAny().get();
-				listeJoueur.remove(j3);
-				Joueur j4 = listeJoueur.stream().findAny().get();
-				listeJoueur.remove(j4);
-				
-				Equipe e1 = new Equipe(j1,j2);
-				Equipe e2 = new Equipe(j3,j4);
-				
-				this.matches.add(new Match(e1,e2));
+				Equipe[] eTab = new Equipe[2];
+				for (int k = 0 ; k < 2 ; k++) {
+					Joueur j1 = listeJoueur.stream().filter( j -> j.getSex() == Joueur.FEMME).findAny().get();
+					listeJoueur.remove(j1);
+					Joueur j2 = listeJoueur.stream().filter( j -> j.getSex() == Joueur.HOMME).findAny().get();
+					listeJoueur.remove(j2);
+					eTab[k] = new Equipe(j1,j2);
+				}
+				this.matches.add(new Match(eTab[0],eTab[1]));
 			}
 		}
 	}
