@@ -71,15 +71,15 @@ public class Match {
 
 	private Equipe recuperVainqueurMatch() {
 		
-		int setEquipe1= setMap.get(Match.ID_EQUIPE_UNE);
+		int setEquipe1= setMap.get(Match.ID_EQUIPE_UNE); // permet de connaitre l'id de l objet 
 		int setEquipe2= setMap.get(Match.ID_EQUIPE_DEUX);
 		
-	    return equipeTab[(setEquipe1>setEquipe2)?Match.ID_EQUIPE_UNE:Match.ID_EQUIPE_DEUX];
+	    return equipeTab[(setEquipe1>setEquipe2)?Match.ID_EQUIPE_UNE:Match.ID_EQUIPE_DEUX]; // fait en sort de retourner le joueur qui a gagner
 		
 	}
 
 	private void ajouterVainqueurSet(int vainqueurSet) {
-		setMap.put(vainqueurSet, setMap.get(vainqueurSet) +1 );
+		setMap.put(vainqueurSet, setMap.get(vainqueurSet) +1 ); // si il est vainceur on lui rajoute une valeur
 	}
 
 	private boolean verifierGagnant() {
@@ -90,7 +90,7 @@ public class Match {
 		int[] scoreSet = {0,0};
 		while (verifierScore(scoreSet))
 		{
-			int vainqueurJeu = jouerJeu();
+			int vainqueurJeu = jouerJeu();  // a chaque foi un ou 0 point va etre ajouter 
 			scoreSet[vainqueurJeu] = scoreSet[vainqueurJeu] + 1;
 		}
 		this.scores.add(scoreSet);
@@ -126,12 +126,12 @@ public class Match {
 		int scoreDiff = Math.abs(score1 - score2);
 		
 		if (this.scores.size() == (this.nbrSetMax - 1)) {
-			if ((score1 == 6) || (score2 == 6)){
+			if ((score1 == 6) || (score2 == 6)){ // si on est au dernier set celui a 6 gagne
 				return false;
 			}
 		}
 		else {
-			if ((score1 > 5 || score2 > 5) && scoreDiff >= 2) {
+			if ((score1 > 5 || score2 > 5) && scoreDiff >= 2) { // le 1er plus grand que 5 et avec au mins 2 moins d'ecart
 				return false;
 			}
 			if ((score1 == 7) || (score2 == 7)){
