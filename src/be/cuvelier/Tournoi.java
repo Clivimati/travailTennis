@@ -136,6 +136,18 @@ public class Tournoi  {
 	private Ordonnancement tourEnCours() {
 		return listeOrdonnancement.get(listeOrdonnancement.size() - 1);
 	}
-
+	
+	public void jouer() {
+		Ordonnancement ord = tourEnCours();
+		List<Equipe> eqliste=ord.jouerMatches();
+		while( eqliste.size()>1) {
+			List<Match> mliste	=tourSuivant(eqliste);
+			ord = new Ordonnancement(mliste);
+			listeOrdonnancement.add(ord);
+	
+			jouer(); // utilisation d' un methode recusive car probleme
+		}
+		
+	}
 
 }
