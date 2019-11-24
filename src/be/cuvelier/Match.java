@@ -12,7 +12,6 @@ public class Match {
 	
 	private Equipe[] equipeTab = new Equipe[2];
 	private int durer;
-	private int tour= 0;
 	private Date date;
 	private HashMap<Integer, Integer> setMap = new HashMap<Integer, Integer>();
 	private ArrayList<int[]> scores;
@@ -33,12 +32,6 @@ public class Match {
 	
 	public Match() {}
 	
-	
-	
-	
-	public int GetTour() {
-		return tour;
-	}
 	
 	public int GetDure() {
 		return durer;

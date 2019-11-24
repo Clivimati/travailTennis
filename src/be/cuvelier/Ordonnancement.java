@@ -28,7 +28,7 @@ public class Ordonnancement {
 	public List<Equipe> jouerMatches() {
 		List<Equipe> listeEquipe = new ArrayList<Equipe>();
 		for (var match : matches ) {
-			Equipe equipeGagnante = match.jouer();
+			Equipe equipeGagnante = match.jouerMatch();
 			listeEquipe.add(equipeGagnante);
 		}	
 		return listeEquipe;
