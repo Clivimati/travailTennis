@@ -2,12 +2,9 @@ package be.cuvelier;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import be.dao.DAO;
-import be.dao.JoueurDao;
-import be.dao.TennisConnection;
+
 
 
 public class Ordonnancement {

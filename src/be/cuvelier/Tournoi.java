@@ -114,7 +114,19 @@ public class Tournoi  {
 		return matches;
 	}
 	
-	
+	public  List<Match> tourSuivant(List<Equipe> eqliste){
+		List<Match> mliste = new ArrayList<Match>();
+		int taille = eqliste.size()/2;
+		for(int i = 0 ; i <= taille ; i++ ) {
+			Equipe e1 = eqliste.stream().findFirst().get();
+			eqliste.remove(e1);
+			Equipe e2 = eqliste.stream().findFirst().get();
+			eqliste.remove(e2);
+			
+			mliste.add(new Match(e1,e2,this.nbrSetGagnant));
+		}
+		return mliste;
+	}
 
 
 }
