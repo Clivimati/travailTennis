@@ -2,8 +2,13 @@ package be.cuvelier;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
+
+import be.dao.DAO;
+import be.dao.JoueurDao;
+import be.dao.TennisConnection;
 
 
 
@@ -35,25 +40,33 @@ public class Tournoi  {
 		
 	}
 	
+	private int calculerSet() {
+		switch (this.type) {
+		case Tournoi.SIMPLE_HOMME:
+			return 3;
+		default:
+			return 2;
+		}
+	}
 	public void inscrireJoueur() {
-		Ordonnancement ord = new Ordonnancement(genererMatchesAleatoire(NBR_MATCHES_DEFAUT));
+		Ordonnancement ord = new Ordonnancement(genererMatchesAleatoire(NBR_MATCHES_DEFAUT)); // genere le 1er ordonnacement totalement alleatoire
 		this.listeOrdonnancement.add(ord);
 	}
 	
 	private List<Match> genererMatchesAleatoire(int nbrMatches){
-		DAO<Joueur> jDAO = new JoueurDAO(TennisConnection.getInstance());
-		List<Joueur> listeJoueur = jDAO.findAll();
-		Collections.shuffle(listeJoueur);
+		DAO<Joueur> jDAO = new JoueurDao(TennisConnection.getInstance());
+		List<Joueur> listeJoueur = jDAO.findAll(); //appele le DAO avec tout les joueurs
+		Collections.shuffle(listeJoueur); // permet de faire melanger la liste
 		var matches = new ArrayList<Match>();
 		for(int i = 0 ; i < nbrMatches ; i++) {
 			if (this.type == Tournoi.SIMPLE_HOMME) {
 				Equipe[] eTab = new Equipe[2];
 				for (int k = 0 ; k < 2 ; k++) {
-					Joueur j1 = listeJoueur.stream().filter( j -> j.getSex() == Joueur.HOMME).findAny().get();
-					listeJoueur.remove(j1);
+					Joueur j1 = listeJoueur.stream().filter( j -> j.getSex() == Joueur.HOMME).findAny().get(); // trouve n'importe quel joueur dans la liste
+					listeJoueur.remove(j1); // l'enleve de cette liste comme ça impossible d'avoir 2 fois le même joueur
 					eTab[k] = new Equipe(j1);
 				}
-				matches.add(new Match(eTab[0],eTab[1], this.nbrSetGagnant));
+				matches.add(new Match(eTab[0],eTab[1], this.nbrSetGagnant)); // crée tout les match du 1er tour
 			}
 			else if(this.type == Tournoi.SIMPLE_FEMME){
 				Equipe[] eTab = new Equipe[2];
@@ -101,14 +114,7 @@ public class Tournoi  {
 		return matches;
 	}
 	
-	private int calculerSet() {
-		switch (this.type) {
-		case Tournoi.SIMPLE_HOMME:
-			return 3;
-		default:
-			return 2;
-		}
-	}
+	
 
 
 }
