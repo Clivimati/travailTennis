@@ -14,7 +14,7 @@ public class Match {
 	private int durer;
 	private int tour= 0;
 	private Date date;
-	private HashMap<Integer, Integer> score = new HashMap<Integer, Integer>();
+	private HashMap<Integer, Integer> setMap = new HashMap<Integer, Integer>();
 	private ArrayList<int[]> scores;
 	private int nbrSetMax;
 	private Arbitre arbitre;
@@ -57,9 +57,66 @@ public class Match {
 		
 		return a;
 	}
-	public void JouerMatch(int NbrSetMax) {
-		score.put(this.equipeTab[0].hashCode(), 0);
-		score.put(this.equipeTab[1].hashCode(), 0);
+	
+	public Equipe jouerMatch() {
+		
+		setMap.put(Match.ID_EQUIPE_UNE, 0);
+		setMap.put(Match.ID_EQUIPE_DEUX, 0);
+		
+		boolean gagnantMatch = false;
+		while (gagnantMatch == false) {
+			int vainqueurSet = jouerSet();
+			ajouterVainqueurSet(vainqueurSet);
+			gagnantMatch = verifierGagnant();
+		}
+		
+		Equipe equipeVainqueur = recuperVainqueurMatch();
+		
+		return equipeVainqueur;
+				
+	}
+
+	private Equipe recuperVainqueurMatch() {
+		
+		int setEquipe1= setMap.get(Match.ID_EQUIPE_UNE);
+		int setEquipe2= setMap.get(Match.ID_EQUIPE_DEUX);
+		
+	    return equipeTab[(setEquipe1>setEquipe2)?Match.ID_EQUIPE_UNE:Match.ID_EQUIPE_DEUX];
+		
+	}
+
+	private void ajouterVainqueurSet(int vainqueurSet) {
+		setMap.put(vainqueurSet, setMap.get(vainqueurSet) +1 );
+	}
+
+	private boolean verifierGagnant() {
+		return (setMap.get(0) == nbrSetMax) || (setMap.get(1) == nbrSetMax);
+	}
+	
+	private int jouerSet() {
+		int[] scoreSet = {0,0};
+		while (verifierScore(scoreSet))
+		{
+			int vainqueurJeu = jouerJeu();
+			scoreSet[vainqueurJeu] = scoreSet[vainqueurJeu] + 1;
+		}
+		this.scores.add(scoreSet);
+		
+		int indexVainqueur = recupererVainqueurSet(scoreSet);
+		
+		return indexVainqueur;
+	}
+
+
+
+	private int recupererVainqueurSet(int[] scoreSet) {
+		int indexVainqueur = 0;
+		
+		for ( int i = 1; i < scoreSet.length; i++ )
+		{
+			if ( scoreSet[i] > scoreSet[indexVainqueur] ) indexVainqueur = i;
+		}
+		return indexVainqueur;
 		
 	}
 	
@@ -92,20 +149,6 @@ public class Match {
 	}
 	
 	    
-	  public boolean tieBreak() {
-
-	    	int s1 = new Random().nextInt((7 - 6) + 1) + 6;
-	      	if( s1 ==7)
-	      		return true;
-	      	else
-	      		return false;
-	    }
-	
-	public int SwitchTour(Equipe win) {
-		tour ++;
-		return tour;
-		
-	}
 	
 	public void OrganiserMatch(Equipe e1, Equipe e2, Court t, Arbitre r) {
 		
