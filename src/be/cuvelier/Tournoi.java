@@ -140,7 +140,7 @@ public class Tournoi  {
 	public void jouer() {
 		Ordonnancement ord = tourEnCours();
 		List<Equipe> eqliste=ord.jouerMatches();
-		while( eqliste.size()>1) {
+		while( eqliste.size()>1) {  // permet de parcourir la liste et de ne retirer qu 'un joueur 
 			List<Match> mliste	=tourSuivant(eqliste);
 			ord = new Ordonnancement(mliste);
 			listeOrdonnancement.add(ord);
