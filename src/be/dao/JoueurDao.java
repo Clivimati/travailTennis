@@ -34,7 +34,7 @@ public class JoueurDao extends DAO<Joueur> {
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 	ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Joueur WHERE id_j  = " + id);
 			if(result.first())
-				j = new Joueur(id,result.getString("sexe"),result.getInt("classement"),result.getString("nom_j"),result.getString("prenom_j"));
+				j = new Joueur(id,result.getInt("sexe"),result.getInt("classement"),result.getString("nom_j"),result.getString("prenom_j"));
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -45,19 +45,29 @@ public class JoueurDao extends DAO<Joueur> {
 	
 	public List<Joueur> findAll() {
 		
-		List<Joueur> j = new ArrayList<Joueur>();
+		List<Joueur> jliste = new ArrayList<Joueur>();
 		try {
 			ResultSet result = this.connect.createStatement(
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 	ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Joueur");
-			if(result.first())
-				j = new ArrayList<Joueur>(result.getInt("nom_j"));
+			
+			while(result.next()) {
+				Joueur j1 = new Joueur();
+				j1.setId(result.getInt("id_j"));
+				j1.setNom(result.getString("nom_j"));
+				j1.setPrenom(result.getString("prenom_j"));
+				j1.setSex(result.getInt("sexe"));
+				j1.setClassement(result.getInt("classement"));
+				
+				jliste.add(j1);
+			}
+				
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 		}
 		
-		return j;
+		return jliste;
 	}
 }
 

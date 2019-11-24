@@ -1,7 +1,11 @@
 package be.cuvelier;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
+
+
 
 public class Match {
 	
@@ -11,6 +15,14 @@ public class Match {
 	private int tour= 0;
 	private Date date;
 	private int[][] score;
+	private Arbitre arbitre;
+	private Court court;
+	private final List<Equipe> listeEquipe = new ArrayList<Equipe>();
+	
+	public Match(Equipe e1, Equipe e2) {
+		this.listeEquipe.add(e1);
+		this.listeEquipe.add(e2);
+	}
 	
 	public Match() {}
 	
@@ -25,6 +37,8 @@ public class Match {
 		int year= 2020;
 		date = new Date(year, month, jour);
 	}
+	
+	
 	
 	public int[][] GetScore() {
 		return score;
@@ -60,55 +74,106 @@ public class Match {
 		return team;	
 	}
 	
-	public void verifierScore(Equipe e1 , Equipe e2, int numtype) 
+	public void verifierScore( Equipe e1 , Equipe e2, int numtype) 
 	{
 		int set = 1;	
-		score = new int[2][numtype];
+		score = new int[2][numtype+2];	
+		int win1=0;
+		int win2=0;
 		jouerMatch(e1,e2);
 		
-		
-		while ( set <=numtype) {
+		while ( set !=numtype+1) {
 		int s1 = new Random().nextInt((7 - 1) + 1) + 1;
 	    int s2 = new Random().nextInt((7 - 1) + 1) + 1;
-	    while(set != 4){
 	     	if( s1 == 6 && s2 == 6 ){
 	    		if(tieBreak() == true) {
+	    			set ++;
 	    			s1 =7;
 	    			score[1][set]=s1;
 	    			score[2][set]=s2;
-	    			set ++;
+	    			win1 ++;
+	    			System.out.println(score[1][set] +" "+ score[2][set]);
+	    			
 	    			
 	    		}else if (tieBreak()== false){
+	    			set ++;
 	    			s2=7;
 	    			score[1][set]=s1;
 	    			score[2][set]=s2;
-	    			set ++;
-	    			
+	    			win2++;
+	    			System.out.println(score[1][set] +" "+ score[2][set]);
 	    		}
-	    	}else if (s1 == 7 && s2 == 5 || s1 ==6 && s2 ==4 ) {
+	    	}
+			else if (s1 == 7 && s2 == 5 || s1 ==6 && s2 ==4 ) {
+			 	set ++;
 	    		score[1][set]=s1;
     			score[2][set]=s2;
-	    		set ++;
+	    		win1++;
+	    		System.out.println(score[1][set] +" "+ score[2][set]);
 	    }else if(s2 == 7 && s1 == 5 || s2 ==6 && s1 ==4) {
+	    	set++;
 	    	score[1][set]=s1;
 			score[2][set]=s2;
-	    	set++;
+			win2++;
+	    	System.out.println(score[1][set] +" "+ score[2][set]);
 	    }else if ( s1 ==6 && s1 >s2+2) {
-	    	score[1][set]=s1;
-			score[2][set]=s2;
 	    	set ++;
-	    }else if ( s2 ==6 && s2 > s1+2) {
 	    	score[1][set]=s1;
 			score[2][set]=s2;
+			win1++;
+	    	System.out.println(score[1][set] +" "+ score[2][set]);
+	    }else if ( s2 ==6 && s2 > s1+2) {
 	    	set++;
-	    }
-	}
-	    }
-	
+	    	score[1][set]=s1;
+			score[2][set]=s2;
+			win2++;
+	    	System.out.println(score[1][set] +" "+ score[2][set]);
+	    }else if(s1 <=5 && s2 <=5  ) {
+	    	 s1 = new Random().nextInt((7 - 4) + 1) + 4;
+			 s2 = new Random().nextInt((7 - 4) + 1) + 4;
+			 if(s1 == 7 && s2 == 5 || s1 ==6 && s2 ==4) {
+				 set ++;
+				 score[1][set]=s1;
+				 score[2][set]=s2;
+				 win1++;
+				 System.out.println(score[1][set] +" "+ score[2][set]);
+			 }else if(s2 == 7 && s1 == 5 || s2 ==6 && s1 ==4)
+			 {		set++;
+				 	score[1][set]=s1;
+					score[2][set]=s2;
+					win2++;
+			    	System.out.println(score[1][set] +" "+ score[2][set]); 
+			 }else if ( s2 ==4 && s1 ==4) {
+				 	 int t = new Random().nextInt((2- 1) + 1) + 1;
+					 if(t == 2) {
+						 set++;
+						 score[1][set]=s1+t;
+						 score[2][set]=s2;
+						 win1++;
+						 System.out.println(score[1][set] +" "+ score[2][set]); 
+					 }else if( t ==1) {
+						 set++;
+						 score[1][set]=s1;
+						 score[2][set]=s2+2;
+						 win2++;
+						 System.out.println(score[1][set] +" "+ score[2][set]);
+					 }
+				 	
+			 }
+	    	}
+		}if(numtype ==3 && win1 ==2 || numtype==5 && win1 >=3)
+		{
+			
+		}else if(numtype ==3 && win2 ==2 || numtype==5 && win2 >=3) {
+			
+			
+		}
 		
-	}
+}
+	
+	
 	    
-	    public boolean tieBreak() {
+	  public boolean tieBreak() {
 
 	    	int s1 = new Random().nextInt((7 - 6) + 1) + 6;
 	      	if( s1 ==7)
@@ -125,16 +190,6 @@ public class Match {
 	
 	public void OrganiserMatch(Equipe e1, Equipe e2, Court t, Arbitre r) {
 		
-		if(ord.GetType()=="SM") {
-			Match n1= new Match (e1,e2,t,r);
-		}else if (ord.GetType()=="SF") {
-			Match n1= new Match (e1,e2,t,r);
-		}else if (ord.GetType()=="DF") {
-			Match n1= new Match (e1,e2,t,r);
-		}else if (ord.GetType()=="DM") {
-			Match n1= new Match (e1,e2,t,r);
-		}else if (ord.GetType()=="DMi") {
-			
-		}
+		///
 	}
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import java.sql.Connection;
 import be.cuvelier.Arbitre;
+import be.cuvelier.Joueur;
 
 public class ArbitreDAO extends DAO<Arbitre> {
 	
@@ -43,18 +44,25 @@ public class ArbitreDAO extends DAO<Arbitre> {
 
 	
 	public List<Arbitre> findAll() {
-		List<Arbitre> j = new ArrayList<Arbitre>();
+		List<Arbitre> aliste = new ArrayList<Arbitre>();
 		try {
 			ResultSet result = this.connect.createStatement(
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 	ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Arbitre");
-			if(result.first())
-				j = new ArrayList<Arbitre>(result.getInt("nom_a"));
-		}
+			while(result.next()) {
+				 Arbitre a1 = new Arbitre();
+				a1.setId(result.getInt("id_a"));
+				a1.setNom(result.getString("nom_a"));
+				a1.setPrenom(result.getString("prenom_a"));
+				
+				
+				aliste.add(a1);
+			}
+			}
 		catch(SQLException e){
 			e.printStackTrace();
 		}	
-		return j;
+		return aliste;
 	
 	}
 

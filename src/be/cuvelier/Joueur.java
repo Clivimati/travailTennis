@@ -5,25 +5,33 @@ import java.io.Serializable;
 public class Joueur extends Personne implements Serializable {
 	private static final long serialVersionUID=1;
 	
-	private String sexe;
+	private int sex;
 	private int classement;
+	public static final int HOMME = 1;
+	public static final int FEMME = 2;
 	
 	public Joueur() {}
 	
-	public Joueur(int i,String s, int c, String n , String p) 
+	public Joueur(int i,int sex, int cla, String n , String p) 
 	{
 		super(i,n,p);
-		sexe=s;
-		classement =c;
+		this.sex=sex;
+		classement =cla;
 		
 	}
 	
-	public String GetSexe() {
-		return sexe;
-	}
-	
-	public int GetClass() {
+	public int getClassement() {
 		return classement;
 	}
-
+	public void setClassement(int classement) {
+		this.classement = classement;
+	}
+	public int getSex() {
+		return sex;
+	}
+	public void setSex(int sex) {
+		this.sex = sex;
+	}
+	
+	
 }
