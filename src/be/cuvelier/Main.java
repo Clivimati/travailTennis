@@ -9,13 +9,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		Tournoi t = new Tournoi();
 		
-		t.AjouterOrdonnancement(Ordonnancement.SIMPLE_FEMME);
-		t.AjouterOrdonnancement(Ordonnancement.SIMPLE_HOMME);
-		t.AjouterOrdonnancement(Ordonnancement.MIXTE);
 		
-		t.Debuter();
-		
-		System.out.print("End");
 
 	}
 

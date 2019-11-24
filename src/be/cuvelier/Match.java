@@ -10,31 +10,31 @@ import java.util.Random;
 
 public class Match {
 	
-	Equipe [] team ;
-	Ordonnancement ord;
+	private Equipe[] equipeTab = new Equipe[2];
 	private int durer;
 	private int tour= 0;
 	private Date date;
 	private HashMap<Integer, Integer> score = new HashMap<Integer, Integer>();
-	private int[][] scor;
+	private ArrayList<int[]> scores;
+	private int nbrSetMax;
 	private Arbitre arbitre;
 	private Court court;
-	private Equipe[] equipeTab = new Equipe[2];
 	
 	
-	public Match(Equipe e1, Equipe e2) {
-		this.equipeTab[0] = e1;
-		this.equipeTab[1] = e2;
+	public static final int ID_EQUIPE_UNE = 0;
+	public static final int ID_EQUIPE_DEUX = 1;
+	
+	public Match(Equipe equipeUne, Equipe equipeDeux, int NbrSetMax) {
+		this.equipeTab[ID_EQUIPE_UNE] = equipeUne;
+		this.equipeTab[ID_EQUIPE_DEUX] = equipeDeux;
+		this.nbrSetMax = NbrSetMax;
+		this.scores = new ArrayList<int[]>();
 	}
 	
 	public Match() {}
 	
 	
 	
-	
-	public int[][] GetScore() {
-		return scor;
-	}
 	
 	public int GetTour() {
 		return tour;
