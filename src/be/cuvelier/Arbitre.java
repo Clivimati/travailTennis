@@ -5,17 +5,15 @@ import java.util.List;
 
 public class Arbitre extends Personne {
 	
-	private List<Date> disponibilite;
+	private List<Date> indisponibiliter;
 	
-	public Arbitre(int i,Date dispo, String n, String p) {
+	public Arbitre(int i,Date indisponibilite , String n, String p) {
 		super(i,n,p);
-		disponibilite= (List<Date>) dispo;
+		this.indisponibiliter= (List<Date>)indisponibilite;
 	}
 	
 	public Arbitre() {}
 	
-	public List<Date> GetDisponibiliter() {
-		return disponibilite;
-	}
+	
 
 }

@@ -2,14 +2,11 @@ package be.cuvelier;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-
-
 
 public class Ordonnancement {
 	private List<Match> matches;
-	
 	public Ordonnancement(List<Match> matches) {
 		setMatches(matches);
 	}

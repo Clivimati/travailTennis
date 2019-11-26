@@ -6,6 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import be.dao.ArbitreDAO;
+import be.dao.DAO;
+import be.dao.JoueurDao;
+import be.dao.TennisConnection;
+
 
 
 public class Match {
@@ -28,6 +33,7 @@ public class Match {
 		this.equipeTab[ID_EQUIPE_DEUX] = equipeDeux;
 		this.nbrSetMax = NbrSetMax;
 		this.scores = new ArrayList<int[]>();
+		this.durer= new Random().nextInt((3-1)+1)+1;
 	}
 	
 	public Match() {}
@@ -41,15 +47,7 @@ public class Match {
 		return date;
 	}
 	
-	public Arbitre Supperviser() {
-		
-		Arbitre a = new Arbitre();
-		if(a.GetDisponibiliter()!= date) {
-			return null;
-		}
-		
-		return a;
-	}
+
 	
 	public Equipe jouerMatch() {
 		
@@ -145,6 +143,6 @@ public class Match {
 	
 	public void OrganiserMatch(Equipe e1, Equipe e2, Court t, Arbitre r) {
 		
-		///
+		
 	}
 }
