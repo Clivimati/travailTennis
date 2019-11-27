@@ -17,7 +17,7 @@ public class Match {
 	
 	private Equipe[] equipeTab = new Equipe[2];
 	private int durer;
-	private Date date;
+	private Date rencontre;
 	private HashMap<Integer, Integer> setMap = new HashMap<Integer, Integer>();
 	private ArrayList<int[]> scores;
 	private int nbrSetMax;
@@ -33,18 +33,18 @@ public class Match {
 		this.equipeTab[ID_EQUIPE_DEUX] = equipeDeux;
 		this.nbrSetMax = NbrSetMax;
 		this.scores = new ArrayList<int[]>();
-		this.durer= new Random().nextInt((3-1)+1)+1;
+		this.durer = 2;
 	}
 	
 	public Match() {}
 	
 	
-	public int GetDure() {
-		return durer;
+	public Date getDate() {
+		return rencontre;
 	}
 	
-	public Date GetDateM() {
-		return date;
+	public void setDate(Date rencontre) {
+		this.rencontre = rencontre;
 	}
 	
 
@@ -140,9 +140,4 @@ public class Match {
 	}
 	
 	    
-	
-	public void OrganiserMatch(Equipe e1, Equipe e2, Court t, Arbitre r) {
-		
-		
-	}
 }

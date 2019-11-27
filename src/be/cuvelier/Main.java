@@ -12,7 +12,12 @@ public class Main {
 		Tournoi t = new Tournoi(Tournoi.SIMPLE_FEMME);
 		t.inscrireJoueur();
 		
-			t.jouer();
+			try {
+				t.jouer();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 	}
 

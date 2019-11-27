@@ -1,7 +1,9 @@
 package be.cuvelier;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
@@ -49,7 +51,15 @@ public class Tournoi  {
 		}
 	}
 	public void inscrireJoueur() {
-		Ordonnancement ord = new Ordonnancement(genererMatchesAleatoire(NBR_MATCHES_DEFAUT)); // genere le 1er ordonnacement totalement alleatoire
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+		
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, 1);
+		cal.set(Calendar.HOUR_OF_DAY,10);
+		cal.set(Calendar.MINUTE,0);
+		Ordonnancement ord = new Ordonnancement(genererMatchesAleatoire(NBR_MATCHES_DEFAUT),cal.getTime());
+		
+		
 		this.listeOrdonnancement.add(ord);
 	}
 	
@@ -114,7 +124,9 @@ public class Tournoi  {
 		return matches;
 	}
 	
-	public  List<Match> tourSuivant(List<Equipe> eqliste){
+
+	
+	public  List<Match> matchSuivants(List<Equipe> eqliste){
 		List<Match> mliste = new ArrayList<Match>();
 		int taille = (eqliste.size()/2)-1;
 		for(int i = 0 ; i <= taille ; i++ ) {
@@ -128,26 +140,35 @@ public class Tournoi  {
 		return mliste;
 	}
 	
-	public boolean matchAJouer() {
-		Ordonnancement ord = tourEnCours();
-		return (ord.getMatches().size() > 1);
-	}
-
-	private Ordonnancement tourEnCours() {
-		return listeOrdonnancement.get(listeOrdonnancement.size() - 1);
-	}
-	
-	public void jouer() {
-		Ordonnancement ord = tourEnCours();
-		List<Equipe> eqliste=ord.jouerMatches();
-		while( eqliste.size()>1) {  // permet de parcourir la liste et de ne retirer qu 'un joueur 
-			List<Match> mliste	=tourSuivant(eqliste);
-			ord = new Ordonnancement(mliste);
-			listeOrdonnancement.add(ord);
-	
-			jouer(); // utilisation d' un methode recusive car probleme
+	public void jouer() throws Exception {
+		if (listeOrdonnancement.size() > 0) {
+			boolean nextTour;
+			do {
+				nextTour = false;
+				Ordonnancement dernierTour = listeOrdonnancement.get(listeOrdonnancement.size() - 1);
+				dernierTour.organiserMatch();
+				List<Equipe>vainqueurs = dernierTour.jouerMatches();
+				if (vainqueurs.size() > 1) {
+					nextTour = true;
+					List<Match> mliste = matchSuivants(vainqueurs);
+					SimpleDateFormat formatte = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(dernierTour.getFin());
+					cal.add(Calendar.DATE, 1);
+					cal.set(Calendar.HOUR_OF_DAY,10);
+					Ordonnancement prochainTour = new Ordonnancement(mliste,cal.getTime());
+					System.out.println(formatte.format(cal.getTime()));
+					this.listeOrdonnancement.add(prochainTour);
+				}
+			}while(nextTour );
+				
 		}
-		
+		else {
+			throw new Exception("Aucun match à jouer");
+		}
 	}
+	
+	
+	
 
 }
