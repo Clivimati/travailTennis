@@ -42,6 +42,10 @@ public class Tournoi  {
 		
 	}
 	
+	public List<Ordonnancement> getOrds(){
+		return ords;
+	}
+	
 	private int calculerSet() {
 		switch (this.type) {
 		case Tournoi.SIMPLE_HOMME:
@@ -151,6 +155,7 @@ public class Tournoi  {
 				if (vainqueurs.size() > 1) {
 					nextTour = true;
 					List<Match> mliste = matchSuivants(vainqueurs);
+					String mat = String.valueOf(mliste);
 					SimpleDateFormat formatte = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 					Calendar cal = Calendar.getInstance();
 					cal.setTime(dernierTour.getFin());
@@ -159,6 +164,7 @@ public class Tournoi  {
 					Ordonnancement prochainTour = new Ordonnancement(mliste,cal.getTime());
 					System.out.println(formatte.format(cal.getTime()));
 					this.listeOrdonnancement.add(prochainTour);
+					
 				}
 			}while(nextTour );
 				

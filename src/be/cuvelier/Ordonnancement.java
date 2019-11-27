@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 import be.dao.ArbitreDAO;
+import be.dao.CourtDao;
 import be.dao.DAO;
 import be.dao.TennisConnection;
 
@@ -55,9 +56,15 @@ public class Ordonnancement {
 		cal.setTime(this.debut);
 		DAO<Arbitre> jDAO = new ArbitreDAO(TennisConnection.getInstance());
 		List<Arbitre> arbitrelist = jDAO.findAll();
+		
+		DAO<Court> jDA = new CourtDao(TennisConnection.getInstance());
+		List<Court> listcourt  = jDA.findAll();
+		
 		for(var match: matches) {
 			if(count <= 2) {
-				int rand= new Random().nextInt((4-1)+1)+1;
+				int rand= new Random().nextInt((4-0)+1)+0;
+				int rand2= new Random().nextInt((7-0)+1)+0;
+				Court crt1 = listcourt.get(rand2);
 				Arbitre ar1=arbitrelist.get(rand);
 				System.out.print(ar1.nom);
 				count++;	

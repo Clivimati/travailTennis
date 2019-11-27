@@ -16,10 +16,14 @@ import java.awt.Insets;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Panel;
+import javax.swing.JLayeredPane;
+import javax.swing.JTextArea;
+import javax.swing.JTable;
 
 public class SimpleF extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -43,13 +47,11 @@ public class SimpleF extends JFrame {
 	public SimpleF() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 410);
-		getContentPane().setLayout(new GridLayout(1, 0, 0, 0));
+		getContentPane().setLayout(null);
 		
-		Panel panel = new Panel();
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 11, 604, 360);
 		getContentPane().add(panel);
-		panel.setLayout(null);
-		
-		
 		
 
 		Tournoi t = new Tournoi(Tournoi.SIMPLE_FEMME);

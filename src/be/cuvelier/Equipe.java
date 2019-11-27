@@ -16,5 +16,9 @@ private List<Joueur> joueurs;
 		this.joueurs.add(j1);
 		this.joueurs.add(j2);
 	}
+	public String toString() {
+		return " " + this.joueurs ;
+				  
+	}
 
 }

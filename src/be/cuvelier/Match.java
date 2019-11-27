@@ -139,5 +139,12 @@ public class Match {
 		return true;
 	}
 	
+	public String toString() {
+		   return " " + this.equipeTab +
+			  " " + this.rencontre +
+			  " " + this.scores+
+			  " "+arbitre;
+		}
+	
 	    
 }

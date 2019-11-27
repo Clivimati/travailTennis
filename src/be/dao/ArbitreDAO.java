@@ -7,7 +7,7 @@ import java.util.List;
 
 import java.sql.Connection;
 import be.cuvelier.Arbitre;
-import be.cuvelier.Joueur;
+
 
 public class ArbitreDAO extends DAO<Arbitre> {
 	
