@@ -21,6 +21,7 @@ private List<Joueur> joueurs;
 		for( Joueur j : joueurs)
 		{
 			n=n+j.toString();
+			n=n+"  ";
 		}
 		return n;		  
 	}
