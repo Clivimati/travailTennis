@@ -60,7 +60,7 @@ public class Tournoi  {
 		cal.add(Calendar.DATE, 1);
 		cal.set(Calendar.HOUR_OF_DAY,10);
 		cal.set(Calendar.MINUTE,0);
-		Ordonnancement ord = new Ordonnancement(genererMatchesAleatoire(NBR_MATCHES_DEFAUT),cal.getTime());
+		Ordonnancement ord = new Ordonnancement(genererMatchesAleatoire(NBR_MATCHES_DEFAUT),cal.getTime()); // crée le 1 ordonnacement et sa date de début
 		
 		
 		this.listeOrdonnancement.add(ord);
@@ -137,12 +137,12 @@ public class Tournoi  {
 		List<Match> mliste = new ArrayList<Match>();
 		int taille = (eqliste.size()/2)-1;
 		for(int i = 0 ; i <= taille ; i++ ) {
-			Equipe e1 = eqliste.stream().findFirst().get();
+			Equipe e1 = eqliste.stream().findFirst().get(); // récupere les equipe qui on passé le tour et l'enleve de la liste
 			eqliste.remove(e1);
 			Equipe e2 = eqliste.stream().findFirst().get();
 			eqliste.remove(e2);
 			
-			mliste.add(new Match(e1,e2,this.nbrSetGagnant));
+			mliste.add(new Match(e1,e2,this.nbrSetGagnant)); // crée un nouveau match
 		}
 		return mliste;
 	}
@@ -152,19 +152,19 @@ public class Tournoi  {
 			boolean nextTour;
 			do {
 				nextTour = false;
-				Ordonnancement dernierTour = listeOrdonnancement.get(listeOrdonnancement.size() - 1);
+				Ordonnancement dernierTour = listeOrdonnancement.get(listeOrdonnancement.size() - 1); // va recuper le dernier ordonnacement qui a ete fai 
 				dernierTour.organiserMatch();
-				List<Equipe>vainqueurs = dernierTour.jouerMatches();
-				if (vainqueurs.size() > 1) {
+				List<Equipe>vainqueurs = dernierTour.jouerMatches(); // permet aux equipes sortante de jouer le match
+				if (vainqueurs.size() > 1) { // tant que la taille de la liste est supperieur a 1 on recrée des match
 					nextTour = true;
-					List<Match> mliste = matchSuivants(vainqueurs);
+					List<Match> mliste = matchSuivants(vainqueurs); 
 					String mat = String.valueOf(mliste);
 					SimpleDateFormat formatte = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 					Calendar cal = Calendar.getInstance();
-					cal.setTime(dernierTour.getFin());
+					cal.setTime(dernierTour.getFin()); 
 					cal.add(Calendar.DATE, 1);
 					cal.set(Calendar.HOUR_OF_DAY,10);
-					Ordonnancement prochainTour = new Ordonnancement(mliste,cal.getTime());
+					Ordonnancement prochainTour = new Ordonnancement(mliste,cal.getTime()); // créer le tour suivant
 					System.out.println(formatte.format(cal.getTime()));
 					this.listeOrdonnancement.add(prochainTour);
 					

@@ -8,7 +8,7 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		
-		Tournoi t = new Tournoi(Tournoi.SIMPLE_FEMME);
+		/*Tournoi t = new Tournoi(Tournoi.SIMPLE_FEMME);
 		t.ajouterOrd();
 		
 			try {
@@ -18,7 +18,7 @@ public class Main {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 
 	}
 

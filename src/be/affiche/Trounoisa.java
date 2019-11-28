@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import be.cuvelier.Equipe;
@@ -61,6 +62,12 @@ public class Trounoisa extends JFrame {
 		JPanel panel = new JPanel();
 		getContentPane().add(panel);
 		panel.setLayout(new GridLayout(ord.getMatches().size(), 0, 0, 0));
+		panel.setPreferredSize(new Dimension(4000, 4000));
+		JScrollPane scrollPane;
+		scrollPane = new JScrollPane(panel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+		        scrollPane.setBounds(100, 100, 450, 300);
+		        this.add(scrollPane);
 		
 		List<Match> match = ord.getMatches(); 
 		for(Match m : match) {

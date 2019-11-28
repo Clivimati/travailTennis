@@ -117,7 +117,7 @@ public class MainPage {
 		frame.getContentPane().add(lblBienvenusSurLa);
 		
 		JLabel lblMenu = new JLabel("MENU");
-		lblMenu.setBackground(new Color(106, 90, 205));
+		lblMenu.setBackground(new Color(255, 255, 255));
 		lblMenu.setFont(new Font("Arial", Font.BOLD, 41));
 		lblMenu.setForeground(new Color(255, 204, 0));
 		lblMenu.setBounds(196, 175, 161, 55);
