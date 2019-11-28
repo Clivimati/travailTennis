@@ -16,6 +16,8 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainPage {
 
@@ -57,15 +59,17 @@ public class MainPage {
 		frame.setJMenuBar(menuBar);
 		
 		JButton btn_1 = new JButton("Simple Femme");
-		btn_1.setFont(new Font("Arial", Font.BOLD, 11));
-		btn_1.setBackground(new Color(255, 215, 0));
 		btn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
 				SimpleF f = new SimpleF();
 				f.setVisible(true);
+				frame.dispose();
 			}
 		});
+		
+		btn_1.setFont(new Font("Arial", Font.BOLD, 11));
+		btn_1.setBackground(new Color(255, 215, 0));
+		
 		menuBar.add(btn_1);
 		
 		JButton btn_2 = new JButton("Simple Homme");

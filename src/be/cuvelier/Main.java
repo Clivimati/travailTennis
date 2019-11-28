@@ -1,7 +1,6 @@
 package be.cuvelier;
 
-import be.dao.DAO;
-import be.dao.JoueurDao;
+
 
 public class Main {
 
@@ -10,7 +9,7 @@ public class Main {
 
 		
 		Tournoi t = new Tournoi(Tournoi.SIMPLE_FEMME);
-		t.inscrireJoueur();
+		t.ajouterOrd();
 		
 			try {
 				t.jouer();

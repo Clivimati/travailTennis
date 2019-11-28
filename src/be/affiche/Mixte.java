@@ -41,8 +41,7 @@ public class Mixte extends JFrame {
 		setContentPane(contentPane);
 		
 		Tournoi t = new Tournoi(Tournoi.MIXTE);
-		t.inscrireJoueur();
-		
+		t.ajouterOrd();
 			try {
 				t.jouer();
 				

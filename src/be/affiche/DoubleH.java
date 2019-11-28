@@ -41,7 +41,7 @@ public class DoubleH extends JFrame {
 		setContentPane(contentPane);
 		
 		Tournoi t = new Tournoi(Tournoi.DOUBLE_HOMME);
-		t.inscrireJoueur();
+		t.ajouterOrd();
 		
 			try {
 				t.jouer();

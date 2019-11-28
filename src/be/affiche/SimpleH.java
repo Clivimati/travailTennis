@@ -41,7 +41,7 @@ public class SimpleH extends JFrame {
 		setContentPane(contentPane);
 		
 		Tournoi t = new Tournoi(Tournoi.SIMPLE_HOMME);
-		t.inscrireJoueur();
+		t.ajouterOrd();
 		
 			try {
 				t.jouer();

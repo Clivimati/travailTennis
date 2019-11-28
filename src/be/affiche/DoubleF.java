@@ -42,7 +42,7 @@ public class DoubleF extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		Tournoi t = new Tournoi(Tournoi.DOUBLE_FEMME);
-		t.inscrireJoueur();
+		t.ajouterOrd();
 		
 			try {
 				t.jouer();

@@ -16,12 +16,9 @@ import be.dao.TennisConnection;
 
 public class Tournoi  {
 
-	private List<Ordonnancement> ords;
-
 	public Tournoi() {
-		this.ords = new ArrayList<Ordonnancement>();
+		
 	}
-
 	public static final int SIMPLE_HOMME = 1;
 	public static final int SIMPLE_FEMME = 2;
 	public static final int DOUBLE_HOMME = 3;
@@ -43,7 +40,7 @@ public class Tournoi  {
 	}
 	
 	public List<Ordonnancement> getOrds(){
-		return ords;
+		return listeOrdonnancement;
 	}
 	
 	private int calculerSet() {
@@ -54,7 +51,7 @@ public class Tournoi  {
 			return 2;
 		}
 	}
-	public void inscrireJoueur() {
+	public void ajouterOrd() {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		
 		Calendar cal = Calendar.getInstance();

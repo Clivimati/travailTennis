@@ -29,16 +29,7 @@ public class SimpleF extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SimpleF frame = new SimpleF();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
 	}
 
 	/**
@@ -55,7 +46,7 @@ public class SimpleF extends JFrame {
 		
 
 		Tournoi t = new Tournoi(Tournoi.SIMPLE_FEMME);
-		t.inscrireJoueur();
+		t.ajouterOrd();
 		
 			try {
 				t.jouer();
