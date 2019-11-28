@@ -33,5 +33,9 @@ public class Joueur extends Personne implements Serializable {
 		this.sex = sex;
 	}
 	
+	public String toString() {
+		return this.nom+" "
+				+this.prenom;
+	}
 	
 }

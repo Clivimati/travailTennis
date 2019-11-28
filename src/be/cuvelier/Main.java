@@ -13,6 +13,8 @@ public class Main {
 		
 			try {
 				t.jouer();
+				t.getOrds();
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

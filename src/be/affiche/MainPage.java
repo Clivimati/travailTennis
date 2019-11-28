@@ -13,6 +13,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
+
+import be.cuvelier.Tournoi;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -20,7 +23,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class MainPage {
-
+	
+	private Tournoi t;
 	private JFrame frame;
 
 	/**
@@ -37,6 +41,29 @@ public class MainPage {
 				}
 			}
 		});
+	}
+	
+	public JButton createButton(String libel, int type) {
+		JButton btn_1 = new JButton(libel);
+		btn_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Trounoisa f;
+				try {
+					f = new Trounoisa(new Tournoi(type));
+					f.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				frame.dispose();
+				
+			}
+		});
+		
+		btn_1.setFont(new Font("Arial", Font.BOLD, 11));
+		btn_1.setBackground(new Color(255, 215, 0));
+		return btn_1;
 	}
 
 	/**
@@ -57,68 +84,22 @@ public class MainPage {
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
-		
-		JButton btn_1 = new JButton("Simple Femme");
-		btn_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				SimpleF f = new SimpleF();
-				f.setVisible(true);
-				frame.dispose();
-			}
-		});
-		
-		btn_1.setFont(new Font("Arial", Font.BOLD, 11));
-		btn_1.setBackground(new Color(255, 215, 0));
-		
+		JButton btn_1;
+		btn_1=createButton("Simple Femme", Tournoi.SIMPLE_FEMME);
 		menuBar.add(btn_1);
-		
-		JButton btn_2 = new JButton("Simple Homme");
-		btn_2.setBackground(new Color(173, 216, 230));
-		btn_2.setFont(new Font("Arial", Font.BOLD, 11));
-		btn_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				SimpleH f = new SimpleH();
-				f.setVisible(true);
-			}
-		});
+		JButton btn_2;
+		btn_2=createButton("Simple Homme", Tournoi.SIMPLE_HOMME);
 		menuBar.add(btn_2);
-		
-		JButton btn_3 = new JButton("Double Femme");
-		btn_3.setBackground(new Color(255, 215, 0));
-		btn_3.setFont(new Font("Arial", Font.BOLD, 11));
-		btn_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-			DoubleF f = new DoubleF();
-			f.setVisible(true);
-			}
-		});
+		JButton btn_3;
+		btn_3=createButton("Double Femme", Tournoi.DOUBLE_FEMME);
 		menuBar.add(btn_3);
-		
-		JButton btn_4 = new JButton("Double Homme");
-		btn_4.setBackground(new Color(173, 216, 230));
-		btn_4.setFont(new Font("Arial", Font.BOLD, 11));
-		btn_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				DoubleH f = new DoubleH();
-				f.setVisible(true);
-			}
-		});
+		JButton btn_4;
+		btn_4=createButton("Double Homme", Tournoi.DOUBLE_HOMME);
 		menuBar.add(btn_4);
-		
-		JButton btn_5 = new JButton("Double Mixte");
-		btn_5.setBackground(new Color(173, 216, 230));
-		btn_5.setFont(new Font("Arial", Font.BOLD, 11));
-		btn_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				Mixte f = new Mixte();
-				f.setVisible(true);
-			}
-		});
+		JButton btn_5;
+		btn_5=createButton("Mixte", Tournoi.MIXTE);
 		menuBar.add(btn_5);
+		
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Le grand Slam");
@@ -136,6 +117,7 @@ public class MainPage {
 		frame.getContentPane().add(lblBienvenusSurLa);
 		
 		JLabel lblMenu = new JLabel("MENU");
+		lblMenu.setBackground(new Color(106, 90, 205));
 		lblMenu.setFont(new Font("Arial", Font.BOLD, 41));
 		lblMenu.setForeground(new Color(255, 204, 0));
 		lblMenu.setBounds(196, 175, 161, 55);

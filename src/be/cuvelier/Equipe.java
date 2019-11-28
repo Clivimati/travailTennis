@@ -17,8 +17,16 @@ private List<Joueur> joueurs;
 		this.joueurs.add(j2);
 	}
 	public String toString() {
-		return " " + this.joueurs ;
-				  
+		String n =" ";
+		for( Joueur j : joueurs)
+		{
+			n=n+j.toString();
+		}
+		return n;		  
+	}
+	
+	public List<Joueur> getJoueur(){
+		return joueurs;
 	}
 
 }

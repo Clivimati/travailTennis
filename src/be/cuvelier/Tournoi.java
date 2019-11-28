@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 
+import javax.swing.JOptionPane;
+
 import be.dao.DAO;
 import be.dao.JoueurDao;
 import be.dao.TennisConnection;
@@ -68,15 +70,19 @@ public class Tournoi  {
 		DAO<Joueur> jDAO = new JoueurDao(TennisConnection.getInstance());
 		List<Joueur> listeJoueur = jDAO.findAll(); //appele le DAO avec tout les joueurs
 		Collections.shuffle(listeJoueur); // permet de faire melanger la liste
+		
 		var matches = new ArrayList<Match>();
 		for(int i = 0 ; i < nbrMatches ; i++) {
+			
 			if (this.type == Tournoi.SIMPLE_HOMME) {
 				Equipe[] eTab = new Equipe[2];
 				for (int k = 0 ; k < 2 ; k++) {
 					Joueur j1 = listeJoueur.stream().filter( j -> j.getSex() == Joueur.HOMME).findAny().get(); // trouve n'importe quel joueur dans la liste
 					listeJoueur.remove(j1); // l'enleve de cette liste comme ça impossible d'avoir 2 fois le même joueur
 					eTab[k] = new Equipe(j1);
+
 				}
+				
 				matches.add(new Match(eTab[0],eTab[1], this.nbrSetGagnant)); // crée tout les match du 1er tour
 			}
 			else if(this.type == Tournoi.SIMPLE_FEMME){

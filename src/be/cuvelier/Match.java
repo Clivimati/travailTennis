@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.Random;
 
 
-
-
 public class Match {
 	
 	private Equipe[] equipeTab = new Equipe[2];
@@ -43,7 +41,20 @@ public class Match {
 		this.rencontre = rencontre;
 	}
 	
-
+	public String getScore() {
+		String num =" ";
+		for (int[] i : scores) {
+			for(int j : i) {
+				
+				num=num+j;	
+				num=num+" ";
+			}
+			
+			num=num+"/";
+		}
+		
+		return num;
+	}
 	
 	public Equipe jouerMatch() {
 		
@@ -63,7 +74,7 @@ public class Match {
 				
 	}
 
-	private Equipe recuperVainqueurMatch() {
+	public Equipe recuperVainqueurMatch() {
 		
 		int setEquipe1= setMap.get(Match.ID_EQUIPE_UNE); // permet de connaitre l'id de l objet 
 		int setEquipe2= setMap.get(Match.ID_EQUIPE_DEUX);
@@ -71,7 +82,16 @@ public class Match {
 	    return equipeTab[(setEquipe1>setEquipe2)?Match.ID_EQUIPE_UNE:Match.ID_EQUIPE_DEUX]; // fait en sort de retourner le joueur qui a gagner
 		
 	}
-
+	
+	public Equipe recuperPerdantMatch() {
+		
+		int setEquipe1= setMap.get(Match.ID_EQUIPE_UNE); // permet de connaitre l'id de l objet 
+		int setEquipe2= setMap.get(Match.ID_EQUIPE_DEUX);
+		
+	    return equipeTab[(setEquipe1<setEquipe2)?Match.ID_EQUIPE_UNE:Match.ID_EQUIPE_DEUX]; // fait en sort de retourner le joueur qui a gagner
+		
+	}
+	
 	private void ajouterVainqueurSet(int vainqueurSet) {
 		setMap.put(vainqueurSet, setMap.get(vainqueurSet) +1 ); // si il est vainceur on lui rajoute une valeur
 	}
@@ -141,6 +161,10 @@ public class Match {
 			  " " + this.scores+
 			  " "+arbitre;
 		}
+	
+	public Equipe[] getEquipe() {
+		return equipeTab;
+	}
 	
 	    
 }

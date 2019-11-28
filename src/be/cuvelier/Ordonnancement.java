@@ -23,6 +23,10 @@ public class Ordonnancement {
 		this.debut = debut;
 	}
 	
+	public Ordonnancement() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public List<Match> getMatches() {
 		return matches;
 	}
